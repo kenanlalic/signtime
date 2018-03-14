@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  .slidecontainer {
+      width: 50%; /* Width of the outside container */
+      margin-left: auto;
+      margin-right: auto;
+      background:#efefef;
+      padding:1em;
+      text-align:center;
+  }
+  .slidecontainer {
+      width: 50%; /* Width of the outside container */
+      margin-left: auto;
+      margin-right: auto;
+      background:#efefef;
+      padding:1em;
+      text-align:center;
+  }
+
+  /* The slider itself */
+  .slider {
+      -webkit-appearance: none;  /* Override default CSS styles */
+      appearance: none;
+      width: 100%; /* Full-width */
+      height: 25px; /* Specified height */
+      background: #d3d3d3; /* Grey background */
+      outline: none; /* Remove outline */
+      opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+      -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+      transition: opacity .2s;
+  }
+
+  /* Mouse-over effects */
+  .slider:hover {
+      opacity: 1; /* Fully shown on mouse-over */
+  }
+
+  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+  .slider::-webkit-slider-thumb {
+      -webkit-appearance: none; /* Override default look */
+      appearance: none;
+      width: 25px; /* Set a specific slider handle width */
+      height: 25px; /* Slider handle height */
+      background: #4CAF50; /* Green background */
+      cursor: pointer; /* Cursor on hover */
+  }
+
+  .slider::-moz-range-thumb {
+      width: 25px; /* Set a specific slider handle width */
+      height: 25px; /* Slider handle height */
+      background: #4CAF50; /* Green background */
+      cursor: pointer; /* Cursor on hover */
+  }
+</style>
+
+<title>Simax Test</title>
+</head>
+<body>
+
+<center><h1>Simax Maya Test</h1><br></center>
+
+<center><h2>Enter the Height!</h2></center>
+<div class="slidecontainer">
+  <input type="range" min="1" max="5" value="2" class="slider" id="cubeHeight">
+  <p>Value: <span id="heightC"></span></p>
+</div>
+
+<script>
+var slider = document.getElementById("cubeHeight");
+var output = document.getElementById("heightC");
+var request = new XMLHttpRequest();
+      request.onload = function() {
+          alert(request.responseText);
+      };
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+  request.open("POST","/login/" + this.value);
+  request.send();
+}
+</script>
+
+</body>
+</html>
